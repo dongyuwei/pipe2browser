@@ -41,7 +41,7 @@ app.listen(config.port);
 
 console.log('################################################');
 console.log('server (pid: ' + process.pid + ') started! please visit http://127.0.0.1:' 
-    + config.port + ' \ndocumentRoot is: ' + config.documentRoot);
+    + config.port + ' \cmdFile is: ' + cmdFile);
 console.log('################################################');
 
 function pipe2browser(app, config) {
