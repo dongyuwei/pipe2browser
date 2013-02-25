@@ -1,0 +1,3 @@
+{
+    "cmd":"svn up --non-interactive --trust-server-cert --username yourName --password yourPasswd /data/ria/lightsource"
+}

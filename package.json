@@ -1,0 +1,20 @@
+{
+	"name" : "pipe2browser",
+	"main" : "./index.js",
+	"bin"  : { "pipe2browser": "./bin/pipe2browser" },
+	"description" : "redirect output(stdout and stderror) of shell cmd to browser,instantly",
+	"author" : {
+		"name" 	: "dongyuwei",
+		"email" : "newdongyuwei@gmail.com",
+		"url" 	: "http://session.im"
+	},
+	"repository": {
+		"type" 	: "git",
+		"url"	: "https://github.com/dongyuwei/pipe2browser.git"
+	},
+	"version" : "1.0.0",
+	"dependencies" : {
+		"argsparser" 	: "0.0.6",
+		"express" 		: "3.0.3"
+	}
+}
