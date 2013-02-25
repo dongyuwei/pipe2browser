@@ -7,10 +7,14 @@ var conf = require("argsparser").parse();
 var spawn = require('child_process').spawn;
 
 if(process.argv.length === 2){
-    console.error('#restart server#: pipe2browser -restart');
+    console.error('#restart  server#: pipe2browser -restart');
+    console.error('#stop     server#: pipe2browser -stop');
     process.exit(1);
 }
-
+if(conf['-stop']){
+    kill();
+    return;
+}
 if(conf['-restart']){
     kill();
 
@@ -26,7 +30,6 @@ if(conf['-restart']){
 
     return;
 }
-
 var pid = path.join(os.tmpDir(), '.pipe2browser');
 function kill(){
     if(fs.existsSync(pid)){
