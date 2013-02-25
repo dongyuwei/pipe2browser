@@ -11,7 +11,12 @@ var config = {
     documentRoot    : conf['-root'] || process.cwd(),
     port            : conf['-port'] || 7777
 };
-config.cmd = JSON.parse(fs.readFileSync(path.join(config.documentRoot,'cmd.json'),'utf-8')).cmd;
+var cmdFile = path.join(config.documentRoot,'cmd.json');
+if(!fs.existsSync(cmdFile)){
+    console.error('you should modify the CMD in ',cmdFile);
+    fs.writeFileSync(cmdFile, '{"cmd" : "ls -l"}', 'utf-8');
+}
+config.cmd = JSON.parse(fs.readFileSync(cmdFile,'utf-8')).cmd;
 
 process.on('uncaughtException', function(err) {
     console.error('Caught exception: ', err);

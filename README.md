@@ -4,7 +4,7 @@ pipe output( **stdout** and **stderror** ) of shell cmd to browser,instantly. by
 how to use?
 
 1. `sudo npm install -g pipe2browser`
-2. modify the `cmd` in **cmd.json** of current dir(if `cmd.json` does't exists, create it) to test.
+2. modify the `cmd` in **cmd.json** of current dir to test.
 3. `pipe2browser -restart`, enjoy!
 
 an example cmd.json:
@@ -14,6 +14,6 @@ an example cmd.json:
 }
 ```
 
-__Note:__ the default **cmd.json** should exists in your current dir(`pwd`), where you start  **pipe2browser** 
+__Note:__ a default **cmd.json** will created in your current dir(`pwd`), where you start  **pipe2browser** 
 
  
