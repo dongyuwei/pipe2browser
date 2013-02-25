@@ -14,7 +14,7 @@ var config = {
 var cmdFile = path.join(config.documentRoot,'cmd.json');
 if(!fs.existsSync(cmdFile)){
     console.error('you should modify the CMD in ',cmdFile);
-    fs.writeFileSync(cmdFile, '{"cmd" : "ls -l"}', 'utf-8');
+    fs.writeFileSync(cmdFile, '{"cmd" : [ "pwd", "ls -l" ]}', 'utf-8');
 }
 config.cmd = JSON.parse(fs.readFileSync(cmdFile,'utf-8')).cmd;
 
@@ -50,23 +50,30 @@ function pipe2browser(app, config) {
             'Content-Type': 'text/html;charset=utf-8'
         });
         res.write('<script>window._timer_ = setInterval(function(){try{document.body.scrollTop = document.body.offsetHeight;}catch(e){}},20);</script><ul>', 'utf-8');
-        res.write('<li style="color:blue;"> excute `' + config.cmd + '` ... </li>', 'utf-8');
+        
+        var length = config.cmd.length;
+        config.cmd.forEach(function(cmd,i){
+            res.write('<li style="color:blue;"> excute `' + cmd + '` ... </li>', 'utf-8');
 
-        console.log(config.cmd);
+            console.log(cmd);
 
-        exec(config.cmd, function(error, stdout, stderr) {
-            if (error) {
-                stderr.toString().split('\n').forEach(function(line) {
-                    line && res.write('<li style="color:red;">' + line + '</li>', 'utf-8');
+            exec(cmd, function(error, stdout, stderr) {
+                if (error) {
+                    stderr.toString().split('\n').forEach(function(line) {
+                        line && res.write('<li style="color:red;">' + line + '</li>', 'utf-8');
+                    });
+                    res.end('</ul><script>clearInterval(window._timer_); document.body.scrollTop = document.body.offsetHeight;</script>', 'utf-8');
+                    throw error;
+                }
+
+                stdout.toString().split('\n').forEach(function(line) {
+                    line && res.write('<li style="color:green;">' + line + '</li>', 'utf-8');
                 });
-                res.end('</ul><script>clearInterval(window._timer_); document.body.scrollTop = document.body.offsetHeight;</script>', 'utf-8');
-                throw error;
-            }
-
-            stdout.toString().split('\n').forEach(function(line) {
-                line && res.write('<li style="color:green;">' + line + '</li>', 'utf-8');
+                if(i === length - 1){
+                    res.end('</ul><script>clearInterval(window._timer_); document.body.scrollTop = document.body.offsetHeight;</script>', 'utf-8');
+                }
             });
-            res.end('</ul><script>clearInterval(window._timer_); document.body.scrollTop = document.body.offsetHeight;</script>', 'utf-8');
         });
+        
     });
 }

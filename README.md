@@ -10,7 +10,11 @@ how to use?
 an example cmd.json:
 ```
 {
-    "cmd":"svn up --non-interactive --trust-server-cert --username dyw --password myPasswd /tmp/myCode"
+    "cmd":[
+        "pwd",
+        "ls -l",
+        "svn up --non-interactive --trust-server-cert --username dyw --password myPasswd /tmp/myCode"
+    ]
 }
 ```
 
