@@ -50,7 +50,7 @@ function pipe2browser(app, config) {
             'Content-Type': 'text/html;charset=utf-8'
         });
         res.write('<script>window._timer_ = setInterval(function(){try{document.body.scrollTop = document.body.offsetHeight;}catch(e){}},20);</script><ul>', 'utf-8');
-        res.write('<li style="color:blue;"> excute ' + config.cmd + ' ... </li>', 'utf-8');
+        res.write('<li style="color:blue;"> excute `' + config.cmd + '` ... </li>', 'utf-8');
 
         console.log(config.cmd);
 
