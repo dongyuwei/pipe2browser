@@ -5,8 +5,7 @@ var os = require('os');
 var conf = require("argsparser").parse();
 
 var spawn = require('child_process').spawn;
-
-if(process.argv.length < 2){
+if(process.argv.length < 3){
     console.error('#restart  server#: pipe2browser -restart');
     console.error('#stop     server#: pipe2browser -stop');
     process.exit(1);

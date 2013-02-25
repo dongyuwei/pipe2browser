@@ -12,7 +12,7 @@
 		"type" 	: "git",
 		"url"	: "https://github.com/dongyuwei/pipe2browser.git"
 	},
-	"version" : "1.0.7",
+	"version" : "1.0.8",
 	"dependencies" : {
 		"argsparser" 	: "0.0.6",
 		"express" 		: "3.0.3"
